@@ -1,0 +1,32 @@
+version: '3.9'
+networks:
+  local:
+    external: false
+
+services:
+
+  db_postgres_status:
+    image: postgres:12
+    environment:
+      POSTGRES_USER: sa
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: status
+    volumes:
+      - status-postgresql:/var/lib/postgresql
+      - status-postgres12-data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - local
+
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8182:8182
+
+volumes:
+  status-postgresql:
+  status-postgres12-data:
+    driver: local
