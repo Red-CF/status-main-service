@@ -1,13 +1,13 @@
-package org.democat.status.main.service.domain.dtos;
+package org.democat.status.main.service.apirest.models;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
-public class Dog {
+public class DogModel {
     private Long id;
     private String name;
     private int age;

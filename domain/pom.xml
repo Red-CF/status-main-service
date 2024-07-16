@@ -10,10 +10,10 @@
         <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <artifactId>domain</artifactId>
+    <artifactId>org.democat.domain</artifactId>
     <packaging>jar</packaging>
     <version>0.0.1</version>
-    <name>domain</name>
+    <name>org.democat.domain</name>
 
 
     <properties>

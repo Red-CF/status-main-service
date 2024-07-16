@@ -5,20 +5,35 @@
 
     <parent>
         <groupId>org.democat</groupId>
-        <artifactId>status-main-service</artifactId>
+        <artifactId>org.democat.status-main-service</artifactId>
         <version>0.0.1</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <artifactId>api-rest</artifactId>
+    <artifactId>org.democat.api-rest</artifactId>
     <packaging>jar</packaging>
-    <name>api-rest</name>
+    <name>org.democat.api-rest</name>
 
     <properties>
         <java.version>17</java.version>
     </properties>
 
     <dependencies>
+        <!--Internal-->
+        <dependency>
+            <groupId>org.democat</groupId>
+            <artifactId>org.democat.use-case</artifactId>
+            <version>0.0.1</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.democat</groupId>
+            <artifactId>org.democat.domain</artifactId>
+            <version>0.0.1</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <!--External-->
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-core</artifactId>

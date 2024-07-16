@@ -10,17 +10,17 @@
     </parent>
 
     <groupId>org.democat</groupId>
-    <artifactId>status-main-service</artifactId>
+    <artifactId>org.democat.status-main-service</artifactId>
     <packaging>pom</packaging>
     <version>0.0.1</version>
-    <name>status-main-service</name>
+    <name>org.democat.status-main-service</name>
 
     <modules>
         <module>boot</module>
         <module>domain</module>
         <module>application/use-case</module>
         <module>api-rest</module>
-        <module>infrastructure/dog-client</module>
+        <module>infrastructure/web-client</module>
         <module>infrastructure/repository-sql</module>
     </modules>
 
@@ -70,17 +70,6 @@
         </dependency>
 
         <dependency>
-            <groupId>org.flywaydb</groupId>
-            <artifactId>flyway-core</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.postgresql</groupId>
-            <artifactId>postgresql</artifactId>
-            <scope>runtime</scope>
-        </dependency>
-
-        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-autoconfigure</artifactId>
         </dependency>
@@ -98,8 +87,10 @@
                         <configuration>
                             <append>true</append>
                             <excludes>
+                                <!--Excluding only entities, interfaces, & Application.java files-->
                                 <exclude>**/ports/**</exclude>
                                 <exclude>**/dtos/**</exclude>
+                                <exclude>**/models/**</exclude>
                                 <exclude>**/enums/**</exclude>
                                 <exclude>**/*Application.java</exclude>
                                 <exclude>**/*MapperImpl.java</exclude>
@@ -116,7 +107,7 @@
                                 <id>post-unit-test</id>
                                 <phase>verify</phase>
                                 <goals>
-                                    <goal>report-aggregate</goal>
+                                    <goal>report</goal>
                                 </goals>
                             </execution>
                         </executions>
@@ -126,5 +117,47 @@
             </build>
         </profile>
     </profiles>
+
+    <build>
+        <plugins>
+            <plugin>
+                <!--Mapstruct config-->
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.0</version>
+                <configuration>
+                    <annotationProcessorPaths>
+                        <path>
+                            <groupId>org.mapstruct</groupId>
+                            <artifactId>mapstruct-processor</artifactId>
+                            <version>${mapstruct.version}</version>
+                        </path>
+                        <path>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                            <version>${lombok.version}</version>
+                        </path>
+                        <dependency>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok-mapstruct-binding</artifactId>
+                            <version>0.2.0</version>
+                        </dependency>
+                    </annotationProcessorPaths>
+                    <compilerArgs>
+                        <compilerArg>
+                            -Amapstruct.defaultComponentModel=spring
+                        </compilerArg>
+                    </compilerArgs>
+                </configuration>
+            </plugin>
+            <plugin>
+                <!--Flyway config-->
+                <groupId>org.flywaydb</groupId>
+                <artifactId>flyway-maven-plugin</artifactId>
+                <version>${flyway.version}</version>
+            </plugin>
+        </plugins>
+    </build>
+
 
 </project>
