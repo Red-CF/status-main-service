@@ -13,5 +13,5 @@ public interface DogStatusRepository extends CrudRepository<Dog, Long> {
 
     Optional<Dog> getByName(String name);
 
-    Optional<Dog> getOneByBreedRandomly(String breed);
+    Optional<Dog> getOneByBreed(String breed);
 }

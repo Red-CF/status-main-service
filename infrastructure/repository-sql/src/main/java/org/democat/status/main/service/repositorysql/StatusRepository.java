@@ -8,5 +8,5 @@ import java.util.Optional;
 public interface StatusRepository extends JpaRepository<DogStatusEntity, Long> {
     Optional<DogStatusEntity> getByName(String name);
 
-    Optional<DogStatusEntity> getOneByBreedRandomly(String breed);
+    Optional<DogStatusEntity> getOneByBreed(String breed);
 }
