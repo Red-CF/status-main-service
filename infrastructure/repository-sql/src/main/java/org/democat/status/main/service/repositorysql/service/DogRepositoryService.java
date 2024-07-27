@@ -33,8 +33,8 @@ public abstract class DogRepositoryService implements DogStatusRepository {
     }
 
     @Override
-    public Optional<Dog> getOneByBreedRandomly(String breed) {
-        Optional<DogStatusEntity> entity = statusRepository.getOneByBreedRandomly(breed);
+    public Optional<Dog> getOneByBreed(String breed) {
+        Optional<DogStatusEntity> entity = statusRepository.getOneByBreed(breed);
         return entity.map(dogStatusEntity -> dogEntityMapper.convert(dogStatusEntity));
     }
 }

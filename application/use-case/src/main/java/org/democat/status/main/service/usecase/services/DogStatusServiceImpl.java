@@ -44,7 +44,7 @@ public class DogStatusServiceImpl implements DogStatusService {
 
     @Override
     public Optional<Dog> getOneByBreedRandomly(String breed) {
-        Optional<Dog> requestedData = repository.getOneByBreedRandomly(breed);
+        Optional<Dog> requestedData = repository.getOneByBreed(breed);
         if (requestedData.isEmpty()) {
             log.error("There`s no dog by the specified breed {}", breed);
             return requestedData;
