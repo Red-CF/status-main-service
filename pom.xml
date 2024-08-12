@@ -75,49 +75,6 @@
         </dependency>
     </dependencies>
 
-    <profiles>
-        <profile>
-            <id>coverage</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.jacoco</groupId>
-                        <artifactId>jacoco-maven-plugin</artifactId>
-                        <version>0.8.7</version>
-                        <configuration>
-                            <append>true</append>
-                            <excludes>
-                                <!--Excluding only entities, interfaces, & Application.java files-->
-                                <exclude>**/ports/**</exclude>
-                                <exclude>**/dtos/**</exclude>
-                                <exclude>**/models/**</exclude>
-                                <exclude>**/enums/**</exclude>
-                                <exclude>**/*Application.java</exclude>
-                                <exclude>**/*MapperImpl.java</exclude>
-                            </excludes>
-                        </configuration>
-                        <executions>
-                            <execution>
-                                <id>pre-unit-test</id>
-                                <goals>
-                                    <goal>prepare-agent</goal>
-                                </goals>
-                            </execution>
-                            <execution>
-                                <id>post-unit-test</id>
-                                <phase>verify</phase>
-                                <goals>
-                                    <goal>report</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-    </profiles>
-
     <build>
         <plugins>
             <plugin>
@@ -150,14 +107,6 @@
                     </compilerArgs>
                 </configuration>
             </plugin>
-            <plugin>
-                <!--Flyway config-->
-                <groupId>org.flywaydb</groupId>
-                <artifactId>flyway-maven-plugin</artifactId>
-                <version>${flyway.version}</version>
-            </plugin>
         </plugins>
     </build>
-
-
 </project>
